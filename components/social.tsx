@@ -16,7 +16,7 @@ export class SocialItem extends React.Component<ItemProps> {
 
 export class SocialWrapper extends React.Component {
     render() {
-        return (<div className="h-full w-full flex justify-center items-end">
+        return (<div className="h-7 w-full flex justify-center items-end">
             {this.props.children}
         </div>)
     }
