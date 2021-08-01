@@ -8,7 +8,7 @@ interface ItemProps {
 
 export class SocialItem extends React.Component<ItemProps> {
     render() {
-        return (<a target="_blank" href={"https://" + this.props.target} className="mx-1 text-2xl">
+        return (<a target="_blank" href={this.props.target} className="mx-1 text-2xl">
             {this.props.children}
         </a>)
     }
