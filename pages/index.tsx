@@ -24,7 +24,7 @@ export default class Index extends React.Component {
         <SocialItem target="mailto:emin.arican@outlook.com" custom={null}>
           <FaEnvelopeSquare/>
         </SocialItem>
-        <SocialItem target="discord.com/users/784013663186059324" custom={discordStyle}>
+        <SocialItem target="https://discord.com/users/784013663186059324" custom={discordStyle}>
           <FaDiscord/>
         </SocialItem>
       </SocialWrapper>
