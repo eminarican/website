@@ -9,7 +9,7 @@ const discordStyle: CSSProperties = {
   lineHeight: "2rem"
 }
 
-export default class extends React.Component {
+export default class Index extends React.Component {
 
   render() {
     return(<Card>

@@ -10,11 +10,11 @@ interface ItemProps {
 export class SocialItem extends React.Component<ItemProps> {
     render() {
         if (this.props.custom === null) {
-            return (<a target="_blank" href={this.props.target} className="mx-1 text-2xl">
+            return (<a target="_blank" rel="noreferrer" href={this.props.target} className="mx-1 text-2xl">
                 {this.props.children}
             </a>)
         } else {
-            return (<a style={this.props.custom} target="_blank" href={this.props.target} className="mx-1">
+            return (<a style={this.props.custom} target="_blank" rel="noreferrer" href={this.props.target} className="mx-1">
                 {this.props.children}
             </a>)
         }
