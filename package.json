@@ -1,26 +1,22 @@
 {
-  "name": "website",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "autoprefixer": "^10.3.1",
-    "next": "11.0.1",
-    "postcss": "^8.3.6",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-icons": "^4.2.0",
-    "tailwindcss": "^2.2.7"
-  },
-  "devDependencies": {
-    "@types/react": "17.0.15",
-    "eslint": "7.32.0",
-    "eslint-config-next": "11.0.1",
-    "typescript": "4.3.5"
-  }
+	"name": "myapp",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/kit": "^1.5.0",
+		"svelte": "^3.54.0",
+		"svelte-check": "^3.0.1",
+		"tslib": "^2.4.1",
+		"typescript": "^4.9.3",
+		"vite": "^4.0.0"
+	},
+	"type": "module"
 }
