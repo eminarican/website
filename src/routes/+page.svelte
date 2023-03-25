@@ -1,6 +1,6 @@
 <div
     class="h-screen w-screen flex justify-center items-center p-4 select-none"
-    on:keypress={state.input.focus} on:click={state.input.focus}>
+    on:keypress={() => state.input.focus()} on:click={() => state.input.focus()}>
     <Terminal bind:input={state.input} on:command={command}/>
 </div>
 
