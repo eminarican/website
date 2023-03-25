@@ -5,15 +5,15 @@ export default class History {
     private cursor: number = -1;
 
     public getRecords(): Array<string> {
-        return this.records
+        return this.records;
     }
 
     public addRecord(record: string) {
-        this.records.push(record)
+        this.records.push(record);
     }
 
     public addInput(input: string) {
-        this.inputs.push(input)
+        this.inputs.push(input);
     }
 
     public currentInput(): string {
@@ -22,12 +22,12 @@ export default class History {
 
     public incrementCursor() {
         if (this.cursor == this.inputs.length - 1) return;
-        this.cursor++
+        this.cursor += 1;
     }
 
     public decrementCursor() {
         if (this.cursor == -1) return;
-        this.cursor--
+        this.cursor -= 1;
     }
 
     public resetCursor() {
