@@ -1,6 +1,4 @@
-<div class="h-screen w-screen flex justify-center items-center p-4 select-none">
-    <Frame on:command={command}/>
-</div>
+<Terminal on:command={command}/>
 
 <script lang="ts">
     import "../app.css";
@@ -9,9 +7,10 @@
     import {history, commands} from "../terminal/Store";
 
     import CommandOutput from "../cmd/CommandOutput";
-    import Frame from "../parts/Frame.svelte";
+    import Terminal from "../parts/Terminal.svelte";
 
     onMount(() => {
+        if ($history.getRecords().length != 0) return;
         print(CommandOutput.info("use help command to see available commands"));
     });
 
