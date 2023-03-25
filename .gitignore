@@ -1,4 +1,4 @@
-.svelte-kit/
-package
-
 package-lock.json
+
+.svelte-kit
+package
