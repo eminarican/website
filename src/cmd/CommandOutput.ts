@@ -7,15 +7,15 @@ export default class CommandOutput implements Iterable<string> {
     }
 
     public info(line: string) {
-        this.write(`<div class="text-yellow-300">[?] ${line}</div>`);
+        this.write(`<div class="whitespace-pre-wrap text-yellow-300">[?] ${line}</div>`);
     }
 
     public error(line: string) {
-        this.write(`<div class="text-red-400">[!] ${line}</div>`);
+        this.write(`<div class="whitespace-pre-wrap text-red-400">[!] ${line}</div>`);
     }
 
     public notice(line: string) {
-        this.write(`<div class="text-emerald-300">[+] ${line}</div>`);
+        this.write(`<div class="whitespace-pre-wrap text-emerald-300">[+] ${line}</div>`);
     }
 
     public infos(lines: Array<string>) {

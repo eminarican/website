@@ -26,7 +26,7 @@
         history.update(value => {
             value.addRecord(`eminarican@github ~ > ${detail.input}`);
 
-            if (command === undefined) {
+            if (command == undefined) {
                 printOutput(value, CommandOutput.error(`unknown command "${detail.name}", use help command`));
             } else {
                 printOutput(value, command.execute(detail.args));
