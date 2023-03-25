@@ -23,41 +23,51 @@
     const dispatch = createEventDispatcher();
 
     onMount(() => {
-        document.addEventListener("click", (e) => {
-            input.focus();
-        });
+        document.addEventListener("click", onClick);
+        document.addEventListener("keydown", onEnter);
+        document.addEventListener("keydown", onArrow);
 
-        document.addEventListener("keydown", (e) => {
-            if (e.key != "Enter" || input.value == "") return;
-
-            let args = input.value.split(" ");
-
-            dispatch("command", {
-                raw: input.value,
-                name: args.shift(),
-                args: args,
-            });
-
-            input.value = "";
-        });
-
-        document.addEventListener("keydown", (e) => {
-            history.update((history) => {
-                switch (e.key) {
-                    case "ArrowUp":
-                        history.incrementCursor();
-                        break;
-                    case "ArrowDown":
-                        history.decrementCursor();
-                        break;
-                    default:
-                        return history;
-                }
-                input.value = $history.currentInput();
-                return history;
-            });
-        });
+        return () => {
+            document.removeEventListener("click", onClick);
+            document.removeEventListener("keydown", onEnter);
+            document.removeEventListener("keydown", onArrow);
+        };
     });
+
+    function onClick(event: MouseEvent) {
+        input.focus();
+    }
+
+    function onEnter(event: KeyboardEvent) {
+        if (event.key != "Enter" || input.value == "") return;
+
+        let args = input.value.split(" ");
+
+        dispatch("command", {
+            raw: input.value,
+            name: args.shift(),
+            args: args,
+        });
+
+        input.value = "";
+    }
+
+    function onArrow(event: KeyboardEvent) {
+        history.update((history) => {
+            switch (event.key) {
+                case "ArrowUp":
+                    history.incrementCursor();
+                    break;
+                case "ArrowDown":
+                    history.decrementCursor();
+                    break;
+                default:
+                    return history;
+            }
+            input.value = $history.currentInput();
+            return history;
+        });
+    }
 
     afterUpdate(() => {
         panel.scrollTo(0, panel.scrollHeight);

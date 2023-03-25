@@ -8,17 +8,23 @@
     </div>
 </Frame>
 
-<script>
+<script lang="ts">
     import {goto} from "$app/navigation";
     import {onMount} from "svelte";
 
     import Frame from "../../parts/Frame.svelte";
 
     onMount(() => {
-        document.addEventListener("keydown", (e) => {
-            if (e.ctrlKey && e.key === "c") {
-                goto("/");
-            }
-        });
+        document.addEventListener("keydown", onKey);
+
+        return () => {
+            document.removeEventListener("keydown", onKey);
+        };
     });
+
+    function onKey(event: KeyboardEvent) {
+        if (event.ctrlKey && event.key === "c") {
+            goto("/");
+        }
+    }
 </script>
