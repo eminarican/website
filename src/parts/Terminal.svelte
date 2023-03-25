@@ -6,7 +6,7 @@
         <div class="pr-[3.50rem] w-full flex justify-center text-white text-sm font-mono">eminarican - zsh</div>
     </div>
     <div class="overflow-hidden h-full w-full flex-col bg-black-600/50 border border-t-0 border-[#7e8181]/75 backdrop-filter backdrop-blur-lg bg-black/80 rounded-b-xl">
-        <div class="overflow-y-scroll h-full p-2" bind:this={panel}>
+        <div class="overflow-y-scroll overflow-x-hidden h-full p-2" bind:this={panel}>
             {#each state.records as record}
                 <div class="flex items-center w-full text-white text-sm font-mono">
                     {@html record}

@@ -1,10 +1,10 @@
-import CommandOutput from "../CommandOutput";
-import Command from "../Command";
+import CommandOutput from "../../CommandOutput";
+import Command from "../../Command";
 
 export default class LanguagesCommand extends Command {
 
     public constructor() {
-        super("languages");
+        super("languages", "main");
     }
 
     public override execute(args: Array<string>): CommandOutput {

@@ -1,12 +1,12 @@
-import CommandOutput from "../CommandOutput";
-import Command from "../Command";
+import CommandOutput from "../../CommandOutput";
+import Command from "../../Command";
 
-import {history} from "../../terminal/Store";
+import {history} from "../../../terminal/Store";
 
 export default class ClearCommand extends Command {
 
     public constructor() {
-        super("clear");
+        super("clear", "utility");
     }
 
     public override execute(args: Array<string>): CommandOutput {

@@ -1,10 +1,10 @@
-import CommandOutput from "../CommandOutput";
-import Command from "../Command";
+import CommandOutput from "../../CommandOutput";
+import Command from "../../Command";
 
 export default class SocialCommand extends Command {
 
     public constructor() {
-        super("social");
+        super("social", "main");
     }
 
     public override execute(args: Array<string>): CommandOutput {
