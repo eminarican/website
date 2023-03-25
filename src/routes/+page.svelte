@@ -1,57 +1,66 @@
-<div
-    class="h-screen w-screen flex justify-center items-center p-4 select-none"
-    on:keypress={() => state.input.focus()} on:click={() => state.input.focus()}>
-    <Terminal bind:input={state.input} on:command={command}/>
+<div class="h-screen w-screen flex justify-center items-center p-4 select-none">
+    <Frame on:command={command}/>
 </div>
 
 <script lang="ts">
     import "../app.css";
 
-    import {history} from "../terminal/Store.ts";
     import {onMount} from "svelte";
+    import {history, commands} from "../terminal/Store";
 
     import CommandOutput from "../cmd/CommandOutput";
-    import Terminal from "../parts/Terminal.svelte";
-    import History from "../terminal/History";
-    import Command from "../cmd/Command";
-
-    let state = {
-        input: undefined,
-    };
-
-    function command(event: CustomEvent<CommandEvent>) {
-        let detail = event.detail;
-        let command = detail.command;
-
-        history.update(value => {
-            value.addRecord(`eminarican@github ~ > ${detail.input}`);
-
-            if (command == undefined) {
-                printOutput(value, CommandOutput.error(`unknown command "${detail.name}", use help command`));
-            } else {
-                printOutput(value, command.execute(detail.args));
-            }
-            return value;
-        })
-    }
+    import Frame from "../parts/Frame.svelte";
 
     onMount(() => {
-        history.update(value => {
-            printOutput(value, CommandOutput.info("use help command to see available commands"));
-            return value;
-        })
+        print(CommandOutput.info("use help command to see available commands"));
     });
 
-    function printOutput(history: History, output: CommandOutput) {
+    function command(event: CustomEvent<CommandEvent>) {
+        let payload = event.detail;
+        let command = $commands.get(payload.name);
+
+        printRaw(`eminarican@github ~ > ${payload.raw}`);
+        addInput(payload.raw);
+
+        if (command == undefined) {
+            print(CommandOutput.error(`unknown command "${payload.name}", use help command`));
+        } else {
+            print(command.execute(payload.args));
+        }
+
+        resetCursor();
+    }
+
+    function print(output: CommandOutput) {
         for (let line of output) {
-            history.addRecord(line);
+            printRaw(line);
         }
     }
 
+    function printRaw(message: string) {
+        history.update((history) => {
+            history.addRecord(message);
+            return history;
+        });
+    }
+
+    function addInput(input: string) {
+        history.update((history) => {
+            history.addInput(input);
+            return history;
+        });
+    }
+
+    function resetCursor() {
+        history.update((history) => {
+            history.resetCursor();
+            return history;
+        });
+    }
+
     interface CommandEvent {
-        command: Command | undefined,
-        input: string,
-        args: Array<string>,
+        raw: string,
         name: string,
+        args: Array<string>
     }
 </script>

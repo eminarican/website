@@ -19,20 +19,20 @@ export default class HelpCommand extends Command {
         return output;
     }
 
-    private printGroup(group: string, output: CommandOutput) {
-        commands.subscribe((commands) => {
-            output.info(`${group} commands:`);
-            for (let command of commands) {
-                if (command.group != group) continue;
-
-                output.notice(`- ${command.usage}`);
-            }
-        });
-    }
-
     private printGroups(groups: Array<string>, output: CommandOutput) {
         for (let group of groups) {
             this.printGroup(group, output);
         }
+    }
+
+    private printGroup(group: string, output: CommandOutput) {
+        output.info(`${group} commands:`);
+
+        commands.subscribe((commands) => {
+            for (let command of  commands) {
+                if (command.group != group) continue;
+                output.notice(`- ${command.usage}`);
+            }
+        });
     }
 }

@@ -1,6 +1,7 @@
 import CommandOutput from "../../CommandOutput";
 import Command from "../../Command";
 
+// @ts-ignore
 import {say} from "cowsay2";
 
 export default class CowsayCommand extends Command {

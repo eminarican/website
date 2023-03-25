@@ -13,7 +13,7 @@ export default class ClearCommand extends Command {
         history.update((value) => {
             value.clear();
             return value;
-        })
+        });
 
         return CommandOutput.empty();
     }
