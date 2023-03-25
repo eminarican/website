@@ -12,13 +12,17 @@ export default class LanguagesCommand extends Command {
 
         output.info("languages that i use more frequently:");
         output.notices([
-            `<i class="fa-brands fa-golang"></i> go`,
-            `<i class="fa-brands fa-rust"></i> rust`,
-            `<i class="fa-solid fa-c"></i> c/c++`,
-            `<i class="fa-brands fa-square-js"></i> js/ts`,
-            `<i class="fa-brands fa-java"></i> java/kotlin`,
+            this.language("go", "fa-brands fa-golang"),
+            this.language("rust", "fa-brands fa-rust"),
+            this.language("c/c++", "fa-solid fa-c"),
+            this.language("js/ts", "fa-brands fa-square-js"),
+            this.language("java/kotlin", "fa-brands fa-java"),
         ]);
 
         return output;
+    }
+
+    private language(name: string, icon: string): string {
+        return `<i class="${icon}"></i> ${name}`;
     }
 }

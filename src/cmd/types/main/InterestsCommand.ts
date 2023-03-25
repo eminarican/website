@@ -12,22 +12,26 @@ export default class InterestsCommand extends Command {
 
         output.info("my main interests are:");
         output.notices([
-            `- <i class="fa-solid fa-laptop"></i> computer science`,
-            `- <i class="fa-solid fa-brain"></i> philosophy`,
-            `- <i class="fa-solid fa-book"></i> languages`,
-            `- <i class="fa-solid fa-earth-americas"></i> physics`,
-            `- <i class="fa-solid fa-calculator"></i> maths`,
+            this.interest("computer science", "fa-solid fa-laptop"),
+            this.interest("philosophy", "fa-solid fa-brain"),
+            this.interest("languages", "fa-solid fa-book"),
+            this.interest("physics", "fa-solid fa-earth-americas"),
+            this.interest("maths", "fa-solid fa-calculator"),
         ]);
 
         output.info("my programming field interests are:");
         output.notices([
-            `- <i class="fa-solid fa-cube"></i> graphics programming`,
-            `- <i class="fa-brands fa-docker"></i> distributed systems`,
-            `- <i class="fa-solid fa-screwdriver-wrench"></i> reverse engineering`,
-            `- <i class="fa-solid fa-bolt"></i> embedded systems`,
-            `- <i class="fa-solid fa-server"></i> networking`
+            this.interest("graphics programming", "fa-solid fa-cube"),
+            this.interest("distributed systems", "fa-brands fa-docker"),
+            this.interest("reverse engineering", "fa-solid fa-screwdriver-wrench"),
+            this.interest("embedded systems", "fa-solid fa-bolt"),
+            this.interest("networking", "fa-solid fa-server"),
         ]);
 
         return output;
+    }
+
+    private interest(name: string, icon: string): string {
+        return `- <i class="${icon}"></i> ${name}`;
     }
 }

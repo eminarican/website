@@ -12,11 +12,15 @@ export default class SocialCommand extends Command {
 
         output.info("my social accounts are:");
         output.notices([
-            `<i class="fa-brands fa-github"></i> <a class="underline underline-offset-2" href="https://github.com/eminarican" target=_blank>github</a>`,
-            `<i class="fa-brands fa-twitter"></i> <a class="underline underline-offset-2" href="https://twitter.com/eminarican" target=_blank>twitter</a>`,
-            `<i class="fa-brands fa-discord"></i> <a class="underline underline-offset-2" href="https://discord.com/users/784013663186059324" target=_blank>discord</a>`,
+            this.link("github", "fa-brands fa-github", "https://github.com/eminarican"),
+            this.link("twitter", "fa-brands fa-twitter", "https://twitter.com/eminarican"),
+            this.link("discord", "fa-brands fa-discord", "https://discord.com/users/784013663186059324"),
         ]);
 
         return output;
+    }
+
+    private link(name: string, icon: string, href: string): string {
+        return `<i class="${icon}"></i> <a class="underline underline-offset-2" href="${href}" target=_blank>${name}</a>`;
     }
 }
