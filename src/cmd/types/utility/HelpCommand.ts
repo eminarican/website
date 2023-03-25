@@ -25,7 +25,7 @@ export default class HelpCommand extends Command {
             for (let command of commands) {
                 if (command.group != group) continue;
 
-                output.notice(`- ${command.name}`);
+                output.notice(`- ${command.usage}`);
             }
         });
     }
