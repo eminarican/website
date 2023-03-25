@@ -11,21 +11,23 @@
     import CommandOutput from "../cmd/CommandOutput";
     import Terminal from "../parts/Terminal.svelte";
     import History from "../terminal/History";
+    import Command from "../cmd/Command";
 
     let state = {
         input: undefined,
     };
 
-    function command(event: CustomEvent) {
-        let command = event.detail.command;
+    function command(event: CustomEvent<CommandEvent>) {
+        let detail = event.detail;
+        let command = detail.command;
 
         history.update(value => {
-            value.addRecord(`eminarican@github ~ > ${event.detail.input}`);
+            value.addRecord(`eminarican@github ~ > ${detail.input}`);
 
             if (command === undefined) {
-                printOutput(value, CommandOutput.error(`unknown command "${event.detail.name}", use help command`));
+                printOutput(value, CommandOutput.error(`unknown command "${detail.name}", use help command`));
             } else {
-                printOutput(value, command.execute(event.detail.args));
+                printOutput(value, command.execute(detail.args));
             }
             return value;
         })
@@ -42,5 +44,12 @@
         for (let line of output) {
             history.addRecord(line);
         }
+    }
+
+    interface CommandEvent {
+        command: Command | undefined,
+        input: string,
+        args: Array<string>,
+        name: string,
     }
 </script>
