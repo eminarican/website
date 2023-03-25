@@ -1,7 +1,7 @@
 import CommandOutput from "../CommandOutput";
 import Command from "../Command";
 
-import {commands} from "../../Store";
+import {commands} from "../../terminal/Store";
 
 export default class HelpCommand extends Command {
 
@@ -9,7 +9,7 @@ export default class HelpCommand extends Command {
         super("help");
     }
 
-    public override execute(): CommandOutput {
+    public override execute(args: Array<string>): CommandOutput {
         let output = new CommandOutput();
 
         commands.subscribe((commands) => {

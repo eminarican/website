@@ -8,5 +8,5 @@ export default abstract class Command {
         this.name = name;
     }
 
-    public abstract execute(): CommandOutput
+    public abstract execute(args: Array<string>): CommandOutput
 }

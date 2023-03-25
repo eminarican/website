@@ -3,35 +3,29 @@
 </div>
 
 <script lang="ts">
-    import {commands, history} from "../terminal/Store.ts";
+    import "../app.css";
+
+    import {history} from "../terminal/Store.ts";
     import {onMount} from "svelte";
 
-    import CommandOutput from "../terminal/command/CommandOutput";
-    import CommandMap from "../terminal/command/CommandMap";
+    import CommandOutput from "../cmd/CommandOutput";
     import Terminal from "../parts/Terminal.svelte";
     import History from "../terminal/History";
 
     let state = {
         input: undefined,
-        commands: new CommandMap(),
     };
 
-    commands.subscribe((value) => {
-        state.commands = value;
-    });
-
     function command(event: CustomEvent) {
-        let input = event.detail as string;
-        if (input == "") return;
+        let command = event.detail.command;
 
-        let command = state.commands.get(input);
         history.update(value => {
-            value.addRecord(`eminarican@github ~ > ${input}`);
+            value.addRecord(`eminarican@github ~ > ${event.detail.input}`);
 
             if (command === undefined) {
-                printOutput(value, CommandOutput.error(`unknown command "${input}", use help command`));
+                printOutput(value, CommandOutput.error(`unknown command "${event.detail.name}", use help command`));
             } else {
-                printOutput(value, command.execute());
+                printOutput(value, command.execute(event.detail.args));
             }
             return value;
         })

@@ -25,7 +25,8 @@
 
 <script lang="ts">
     import {afterUpdate, createEventDispatcher} from "svelte";
-    import {history} from "../terminal/Store";
+    import {commands, history} from "../terminal/Store";
+    import CommandMap from "../cmd/CommandMap";
 
     export let input: HTMLInputElement;
     let panel: HTMLDivElement;
@@ -33,18 +34,35 @@
     let state = {
         command: "",
         records: [],
+        commands: new CommandMap(),
     };
 
     history.subscribe((value) => {
         state.records = value.records;
     });
 
+    commands.subscribe((value) => {
+        state.commands = value;
+    });
+
     const dispatch = createEventDispatcher();
 
     function onKeyDown(event: KeyboardEvent) {
         if (event.key != "Enter") return;
+        if (state.command == "") return;
 
-        dispatch("command", state.command);
+        let input = state.command as string;
+        let args = input.split(" ");
+        let name = args.shift();
+
+        let command = state.commands.get(name);
+
+        dispatch("command", {
+            command: command,
+            input: input,
+            args: args,
+            name: name,
+        });
 
         state.command = "";
     }

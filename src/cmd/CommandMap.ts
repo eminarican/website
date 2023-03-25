@@ -1,6 +1,6 @@
 import type Command from "./Command";
 
-import {HelpCommand, AboutCommand, ClearCommand, InterestsCommand, SocialCommand, LanguagesCommand} from "./types";
+import {HelpCommand, AboutCommand, SocialCommand, InterestsCommand, LanguagesCommand, ClearCommand} from "./types";
 
 export default class CommandMap {
 

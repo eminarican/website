@@ -7,7 +7,7 @@ export default class SocialCommand extends Command {
         super("social");
     }
 
-    public override execute(): CommandOutput {
+    public override execute(args: Array<string>): CommandOutput {
         let output = new CommandOutput();
 
         output.info("my social accounts are:");
