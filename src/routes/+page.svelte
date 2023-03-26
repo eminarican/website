@@ -21,7 +21,7 @@
         printRaw(`eminarican@github ~ > ${payload.raw}`);
         addInput(payload.raw);
 
-        if (command == undefined) {
+        if (command == null) {
             print(CommandOutput.error(`unknown command "${payload.name}", use help command`));
         } else {
             print(command.execute(payload.args));
