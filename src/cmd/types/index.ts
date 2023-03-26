@@ -9,4 +9,5 @@ export {default as BlogCommand} from "./main/BlogCommand";
 export {default as CowsayCommand} from "./utility/CowsayCommand";
 export {default as ClearCommand} from "./utility/ClearCommand";
 export {default as EchoCommand} from "./utility/EchoCommand";
+export {default as DateCommand} from "./utility/DateCommand";
 export {default as HelpCommand} from "./utility/HelpCommand";
