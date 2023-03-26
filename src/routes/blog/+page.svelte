@@ -19,6 +19,6 @@
     });
 
     function onKey(event: KeyboardEvent) {
-        if (event.ctrlKey && event.key === "c") goto("/");
+        if (event.ctrlKey && event.key == "c") goto("/");
     }
 </script>
