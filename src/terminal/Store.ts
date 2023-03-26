@@ -1,4 +1,4 @@
-import {writable} from 'svelte/store';
+import {writable} from "svelte/store";
 
 import History from "./History";
 import CommandMap from "../cmd/CommandMap";
