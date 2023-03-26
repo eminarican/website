@@ -45,7 +45,7 @@
 
         dispatch("command", {
             raw: input.value,
-            name: args.shift(),
+            name: args.shift().toLowerCase(),
             args: args,
         });
 
