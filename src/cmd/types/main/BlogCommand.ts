@@ -2,6 +2,7 @@ import CommandOutput from "../../CommandOutput";
 import Command from "../../Command";
 
 import {goto} from "$app/navigation";
+import {history} from "../../../terminal/Store";
 
 export default class BlogCommand extends Command {
 
@@ -10,7 +11,16 @@ export default class BlogCommand extends Command {
     }
 
     public override execute(args: Array<string>): CommandOutput {
-        goto("/blog").then();
-        return CommandOutput.info("exited program with code 0");
+        goto("/blog").then(() => this.printExitMessage());
+        return CommandOutput.empty();
+    }
+
+    private printExitMessage() {
+        history.update((history) => {
+            for (let line of CommandOutput.info("exited program with code 0")) {
+                history.addRecord(line);
+            }
+            return history;
+        });
     }
 }
