@@ -4,7 +4,7 @@ import Command from "../../Command";
 export default class DateCommand extends Command {
 
     public constructor() {
-        super("date", "utility", "date");
+        super("date", "utility");
     }
 
     public override execute(args: Array<string>): CommandOutput {

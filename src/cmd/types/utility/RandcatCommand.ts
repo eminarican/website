@@ -4,7 +4,7 @@ import Command from "../../Command";
 export default class RandcatCommand extends Command {
 
     public constructor() {
-        super("randcat", "utility", "randcat");
+        super("randcat", "utility");
     }
 
     public override execute(args: Array<string>): CommandOutput {
