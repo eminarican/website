@@ -8,53 +8,39 @@
 
     import CommandOutput from "../cmd/CommandOutput";
     import Terminal from "../parts/Terminal.svelte";
+    import History from "../terminal/History.js";
 
     onMount(() => {
-        if ($history.getRecords().length != 0) return;
-        print(CommandOutput.info("use help command to see available commands"));
+        history.update((history) => {
+            if (history.getRecords().length != 0) return;
+            print(history, CommandOutput.info("use help command to see available commands"));
+            return history;
+        });
     });
 
     function command(event: CustomEvent<CommandEvent>) {
         let payload = event.detail;
         let command = $commands.get(payload.name);
 
-        printRaw(`eminarican@github ~ > ${payload.raw}`);
-        addInput(payload.raw);
-
-        if (command == null) {
-            print(CommandOutput.error(`unknown command "${payload.name}", use help command`));
-        } else {
-            print(command.execute(payload.args));
-        }
-
-        resetCursor();
-    }
-
-    function print(output: CommandOutput) {
-        for (let line of output) {
-            printRaw(line);
-        }
-    }
-
-    function printRaw(message: string) {
         history.update((history) => {
-            history.addRecord(message);
-            return history;
-        });
-    }
+            history.addRecord(`eminarican@github ~ > ${payload.raw}`);
+            history.addInput(payload.raw);
 
-    function addInput(input: string) {
-        history.update((history) => {
-            history.addInput(input);
-            return history;
-        });
-    }
+            if (command == null) {
+                print(history, CommandOutput.error(`unknown command "${payload.name}", use help command`));
+            } else {
+                print(history, command.execute(payload.args));
+            }
 
-    function resetCursor() {
-        history.update((history) => {
             history.resetCursor();
             return history;
         });
+    }
+
+    function print(history: History, output: CommandOutput) {
+        for (let line of output) {
+            history.addRecord(line);
+        }
     }
 
     interface CommandEvent {
