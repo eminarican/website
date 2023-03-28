@@ -82,7 +82,10 @@
         });
     }
 
-    function iterateEvents(events: Array<Object>, callback: (name: string, func: (Event) => void) => void) {
+    function iterateEvents(
+        events: Array<Object>,
+        callback: (name: string, func: (Event) => void) => void
+    ) {
         for (let event of events) {
             for (let name of Object.keys(event)) {
                 callback(name, event[name]);
