@@ -34,7 +34,7 @@
         });
     }
 
-    function onMountHistory(callback: (history) => void) {
+    function onMountHistory(callback: (history: History) => void) {
         onMount(() => {
             history.update((history) => {
                 callback(history);

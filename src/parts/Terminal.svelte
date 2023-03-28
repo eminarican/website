@@ -70,19 +70,23 @@
 
     function onMountEvents(events: Array<Object>) {
         onMount(() => {
-            for (let event of events) {
-                for (let name of Object.keys(event)) {
-                    document.addEventListener(name, event[name]);
-                }
-            }
+            iterateEvents(events, (name, func) => {
+                document.addEventListener(name, func);
+            });
 
             return () => {
-                for (let event of events) {
-                    for (let name of Object.keys(event)) {
-                        document.removeEventListener(name, event[name]);
-                    }
-                }
+                iterateEvents(events, (name, func) => {
+                    document.removeEventListener(name, func);
+                });
             };
         });
+    }
+
+    function iterateEvents(events: Array<Object>, callback: (name: string, func: (Event) => void) => void) {
+        for (let event of events) {
+            for (let name of Object.keys(event)) {
+                callback(name, event[name]);
+            }
+        }
     }
 </script>
