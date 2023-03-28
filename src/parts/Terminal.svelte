@@ -33,7 +33,7 @@
         panel.scrollTo(0, panel.scrollHeight);
     });
 
-    function onClick(event: MouseEvent) {
+    function onClick(_event: MouseEvent) {
         input.focus();
     }
 
