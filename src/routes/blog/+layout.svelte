@@ -1,9 +1,9 @@
 <Frame header={false}>
-    <div class="absolute flex flex-row px-5 py-4 gap-x-5 font-mono text-sm text-white">
-        <button class="underline underline-offset-2 cursor-pointer" on:click={() => goto("/")}>{"< exit"}</button>
-        <button class="text-gray-400 cursor-default">home</button>
-        <button class="text-gray-400 cursor-default">blogs</button>
-    </div>
+    <Text className="absolute flex flex-row px-5 py-4 gap-x-5">
+        <button class="cursor-pointer underline underline-offset-2" on:click={() => goto("/")}>{"< exit"}</button>
+        <button class="cursor-default text-gray-400">home</button>
+        <button class="cursor-default text-gray-400">blogs</button>
+    </Text>
     <slot></slot>
 </Frame>
 
@@ -11,4 +11,5 @@
     import {goto} from "$app/navigation";
 
     import Frame from "../../parts/Frame.svelte";
+    import Text from "../../parts/Text.svelte";
 </script>

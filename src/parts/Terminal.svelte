@@ -1,14 +1,14 @@
 <Frame header={true}>
-    <div class="overflow-y-scroll overflow-x-hidden h-full p-2" bind:this={panel}>
+    <div class="h-full p-2 overflow-y-scroll overflow-x-hidden" bind:this={panel}>
         {#each $history.getRecords() as record}
-            <div class="flex items-center w-full text-white text-sm font-mono">
+            <Text className="flex items-center w-full">
                 {@html record}
-            </div>
+            </Text>
         {/each}
-        <div class="flex flex-row w-full text-white text-sm font-mono">
-            <p class="pr-2">eminarican@github ~ ></p>
-            <input class="flex flex-1 bg-transparent outline-none" type="text" bind:this={input}/>
-        </div>
+        <Text className="flex flex-row w-full gap-x-2">
+            <Text>eminarican@github ~ ></Text>
+            <input class="bg-transparent outline-none" bind:this={input}/>
+        </Text>
     </div>
 </Frame>
 
@@ -17,6 +17,7 @@
     import {history} from "../terminal/Store";
 
     import Frame from "./Frame.svelte";
+    import Text from "./Text.svelte";
 
     const dispatch = createEventDispatcher();
 

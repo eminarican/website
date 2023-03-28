@@ -1,24 +1,33 @@
-<div class="flex flex-col h-full w-full">
+<div class="{full} flex flex-col">
     {#if header}
-        <div class="w-full flex items-center h-7 bg-[#363a39] border border-b-0 border-[#7e8181]/75 rounded-t-xl px-1">
-            <div class="h-3 w-3 mx-1 bg-[#ed6a5e] rounded-full"></div>
-            <div class="h-3 w-3 mx-1 bg-[#f4be50] rounded-full"></div>
-            <div class="h-3 w-3 mx-1 bg-[#61c554] rounded-full"></div>
-            <div class="pr-[3.50rem] w-full flex justify-center text-white text-sm font-mono">eminarican - zsh</div>
+        <div class="flex items-center h-7 px-2 bg-[#363a39] border border-b-0 border-[#7e8181]/75 rounded-t-xl">
+            <div class="absolute flex h-3 gap-x-2">
+                <div class="w-3 bg-[#ed6a5e] rounded-full"></div>
+                <div class="w-3 bg-[#f4be50] rounded-full"></div>
+                <div class="w-3 bg-[#61c554] rounded-full"></div>
+            </div>
+            <div class="flex justify-center w-full">
+                <Text>eminarican - zsh</Text>
+            </div>
         </div>
     {/if}
-    {#if header}
-        <div class="border-t-0 rounded-b-xl {style}">
+    <div class="{full} bg-black/80 backdrop-blur-lg overflow-hidden">
+        <div class="{full} border border-[#7e8181]/75 {containerStyle()}">
             <slot></slot>
         </div>
-    {:else}
-        <div class="rounded-xl {style}">
-            <slot></slot>
-        </div>
-    {/if}
+    </div>
 </div>
 
 <script lang="ts">
+    import Text from "./Text.svelte";
+
     export let header = false;
-    const style = "overflow-hidden h-full w-full flex-col backdrop-filter backdrop-blur-lg bg-black-600/50 border border-[#7e8181]/75 bg-black/80";
+    const full = "h-full w-full";
+
+    function containerStyle(): string {
+        if (header) {
+            return "border-t-0 rounded-b-xl";
+        }
+        return "rounded-xl";
+    }
 </script>

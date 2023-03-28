@@ -1,14 +1,18 @@
 <div class="flex flex-col h-full w-full justify-center items-center">
-    <div class="whitespace-pre-line text-yellow-300 text-3xl font-mono font-bold text-center">
+    <Text size="3xl" color="yellow-300" className="font-bold text-center whitespace-pre-line">
         BLOG IS
         UNDER CONSTRUCTION
-        <div class="text-lg text-gray-300">press ctrl-c or click exit to escape</div>
-    </div>
+    </Text>
+    <Text size="lg" color="gray-300">
+        press ctrl-c or click exit to escape
+    </Text>
 </div>
 
 <script lang="ts">
     import {goto} from "$app/navigation";
     import {onMount} from "svelte";
+
+    import Text from "../../parts/Text.svelte";
 
     onMount(() => {
         document.addEventListener("keydown", onKey);
