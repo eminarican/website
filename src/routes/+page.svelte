@@ -10,12 +10,9 @@
     import Terminal from "../parts/Terminal.svelte";
     import History from "../terminal/History.js";
 
-    onMount(() => {
-        history.update((history) => {
-            if (history.getRecords().length != 0) return;
-            print(history, CommandOutput.info("use help command to see available commands"));
-            return history;
-        });
+    onMountHistory((history) => {
+        if (history.getRecords().length != 0) return;
+        print(history, CommandOutput.info("use help command to see available commands"));
     });
 
     function command(event: CustomEvent<CommandEvent>) {
@@ -34,6 +31,15 @@
 
             history.resetCursor();
             return history;
+        });
+    }
+
+    function onMountHistory(callback: (history) => void) {
+        onMount(() => {
+            history.update((history) => {
+                callback(history);
+                return history;
+            });
         });
     }
 
