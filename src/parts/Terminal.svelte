@@ -68,7 +68,7 @@
         });
     }
 
-    function onMountEvents(events: Array<Object>) {
+    function onMountEvents(events: Array<EventHandler>) {
         onMount(() => {
             iterateEvents(events, (name, func) => {
                 document.addEventListener(name, func);
@@ -83,7 +83,7 @@
     }
 
     function iterateEvents(
-        events: Array<Object>,
+        events: Array<EventHandler>,
         callback: (name: string, func: (Event) => void) => void
     ) {
         for (let event of events) {
@@ -91,5 +91,9 @@
                 callback(name, event[name]);
             }
         }
+    }
+
+    interface EventHandler {
+        [key: string]: (Event) => void;
     }
 </script>
