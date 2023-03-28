@@ -15,23 +15,22 @@
 <script lang="ts">
     import {afterUpdate, createEventDispatcher, onMount} from "svelte";
     import {history} from "../terminal/Store";
+
     import Frame from "./Frame.svelte";
+
+    const dispatch = createEventDispatcher();
 
     let input: HTMLInputElement;
     let panel: HTMLDivElement;
 
-    const dispatch = createEventDispatcher();
+    onMountEvents([
+        {"click": onClick},
+        {"keydown": onEnter},
+        {"keydown": onArrow},
+    ]);
 
-    onMount(() => {
-        document.addEventListener("click", onClick);
-        document.addEventListener("keydown", onEnter);
-        document.addEventListener("keydown", onArrow);
-
-        return () => {
-            document.removeEventListener("click", onClick);
-            document.removeEventListener("keydown", onEnter);
-            document.removeEventListener("keydown", onArrow);
-        };
+    afterUpdate(() => {
+        panel.scrollTo(0, panel.scrollHeight);
     });
 
     function onClick(event: MouseEvent) {
@@ -69,7 +68,21 @@
         });
     }
 
-    afterUpdate(() => {
-        panel.scrollTo(0, panel.scrollHeight);
-    });
+    function onMountEvents(events: Array<Object>) {
+        onMount(() => {
+            for (let event of events) {
+                for (let name of Object.keys(event)) {
+                    document.addEventListener(name, event[name]);
+                }
+            }
+
+            return () => {
+                for (let event of events) {
+                    for (let name of Object.keys(event)) {
+                        document.removeEventListener(name, event[name]);
+                    }
+                }
+            };
+        });
+    }
 </script>
