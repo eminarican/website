@@ -34,11 +34,11 @@ function iterateEvents(
     events: Array<EventHandler>,
     callback: (name: string, func: (event: Event) => void) => void
 ) {
-    for (let event of events) {
-        for (let name of Object.keys(event)) {
+    events.forEach((event) => {
+        Object.keys(event).forEach((name) => {
             callback(name, event[name]);
-        }
-    }
+        });
+    });
 }
 
 interface EventHandler {

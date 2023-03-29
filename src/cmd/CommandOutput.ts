@@ -19,21 +19,15 @@ export default class CommandOutput {
     }
 
     public infos(lines: Array<string>) {
-        for (let line of lines) {
-            this.info(line);
-        }
+        lines.forEach((line) => this.info(line));
     }
 
     public errors(lines: Array<string>) {
-        for (let line of lines) {
-            this.error(line);
-        }
+        lines.forEach((line) => this.error(line));
     }
 
     public notices(lines: Array<string>) {
-        for (let line of lines) {
-            this.notice(line);
-        }
+        lines.forEach((line) => this.notice(line));
     }
 
     public toArray(): Array<string> {
