@@ -13,8 +13,9 @@
 </Frame>
 
 <script lang="ts">
-    import {afterUpdate, createEventDispatcher, onMount} from "svelte";
-    import {history} from "../terminal/Store";
+    import {afterUpdate, createEventDispatcher} from "svelte";
+    import {history, updateHistory} from "../terminal/Store";
+    import {onMountEvents} from "../terminal/Util";
 
     import Frame from "./Frame.svelte";
     import Text from "./Text.svelte";
@@ -53,7 +54,7 @@
     }
 
     function onArrow(event: KeyboardEvent) {
-        history.update((history) => {
+        updateHistory((history) => {
             switch (event.key) {
                 case "ArrowUp":
                     history.incrementCursor();
@@ -64,37 +65,7 @@
                 default:
                     return history;
             }
-            input.value = $history.currentInput();
-            return history;
+            input.value = history.currentInput();
         });
-    }
-
-    function onMountEvents(events: Array<EventHandler>) {
-        onMount(() => {
-            iterateEvents(events, (name, func) => {
-                document.addEventListener(name, func);
-            });
-
-            return () => {
-                iterateEvents(events, (name, func) => {
-                    document.removeEventListener(name, func);
-                });
-            };
-        });
-    }
-
-    function iterateEvents(
-        events: Array<EventHandler>,
-        callback: (name: string, func: (Event) => void) => void
-    ) {
-        for (let event of events) {
-            for (let name of Object.keys(event)) {
-                callback(name, event[name]);
-            }
-        }
-    }
-
-    interface EventHandler {
-        [key: string]: (Event) => void;
     }
 </script>

@@ -35,7 +35,7 @@ export default class CommandMap {
         this.map.set(command.name, command);
     }
 
-    [Symbol.iterator](): IterableIterator<Command> {
-        return this.map.values();
+    public forEach(callback: (command: Command) => void) {
+        this.map.forEach((command) => callback(command));
     }
 }

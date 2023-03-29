@@ -2,7 +2,8 @@ import CommandOutput from "../../CommandOutput";
 import Command from "../../Command";
 
 import {goto} from "$app/navigation";
-import {history} from "../../../terminal/Store";
+import {print} from "../../../terminal/Util";
+import {updateHistory} from "../../../terminal/Store";
 
 export default class BlogCommand extends Command {
 
@@ -16,11 +17,8 @@ export default class BlogCommand extends Command {
     }
 
     private printExitMessage() {
-        history.update((history) => {
-            for (let line of CommandOutput.info("exited program with code 0")) {
-                history.addRecord(line);
-            }
-            return history;
+        updateHistory((history) => {
+            print(history, CommandOutput.info("exited program with code 0"));
         });
     }
 }

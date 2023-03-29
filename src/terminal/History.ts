@@ -12,6 +12,10 @@ export default class History {
         this.records.push(record);
     }
 
+    public addRecords(records: Array<string>) {
+        records.forEach((record) => this.records.push(record));
+    }
+
     public addInput(input: string) {
         this.inputs.push(input);
     }

@@ -1,4 +1,4 @@
-export default class CommandOutput implements Iterable<string> {
+export default class CommandOutput {
 
     private lines: Array<string> = [];
 
@@ -36,8 +36,8 @@ export default class CommandOutput implements Iterable<string> {
         }
     }
 
-    [Symbol.iterator](): IterableIterator<string> {
-        return this.lines[Symbol.iterator]();
+    public toArray(): Array<string> {
+        return this.lines;
     }
 
     public static empty(): CommandOutput {

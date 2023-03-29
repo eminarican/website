@@ -10,17 +10,13 @@
 
 <script lang="ts">
     import {goto} from "$app/navigation";
-    import {onMount} from "svelte";
+    import {onMountEvents} from "../../terminal/Util";
 
     import Text from "../../parts/Text.svelte";
 
-    onMount(() => {
-        document.addEventListener("keydown", onKey);
-
-        return () => {
-            document.removeEventListener("keydown", onKey);
-        };
-    });
+    onMountEvents([
+        {"keydown": onKey}
+    ]);
 
     function onKey(event: KeyboardEvent) {
         if (event.ctrlKey && event.key == "c") goto("/");

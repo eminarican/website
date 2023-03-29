@@ -3,12 +3,11 @@
 <script lang="ts">
     import "../app.css";
 
-    import {onMount} from "svelte";
-    import {history, commands} from "../terminal/Store";
+    import {commands, updateHistory} from "../terminal/Store";
+    import {print, onMountHistory} from "../terminal/Util";
 
     import CommandOutput from "../cmd/CommandOutput";
     import Terminal from "../parts/Terminal.svelte";
-    import History from "../terminal/History.js";
 
     onMountHistory((history) => {
         if (history.getRecords().length != 0) return;
@@ -19,7 +18,7 @@
         let payload = event.detail;
         let command = $commands.get(payload.name);
 
-        history.update((history) => {
+        updateHistory((history) => {
             history.addRecord(`eminarican@github ~ > ${payload.raw}`);
             history.addInput(payload.raw);
 
@@ -30,23 +29,7 @@
             }
 
             history.resetCursor();
-            return history;
         });
-    }
-
-    function onMountHistory(callback: (history: History) => void) {
-        onMount(() => {
-            history.update((history) => {
-                callback(history);
-                return history;
-            });
-        });
-    }
-
-    function print(history: History, output: CommandOutput) {
-        for (let line of output) {
-            history.addRecord(line);
-        }
     }
 
     interface CommandEvent {

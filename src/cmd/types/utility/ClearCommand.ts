@@ -1,7 +1,7 @@
 import CommandOutput from "../../CommandOutput";
 import Command from "../../Command";
 
-import {history} from "../../../terminal/Store";
+import {updateHistory} from "../../../terminal/Store";
 
 export default class ClearCommand extends Command {
 
@@ -10,9 +10,8 @@ export default class ClearCommand extends Command {
     }
 
     public override execute(args: Array<string>): CommandOutput {
-        history.update((value) => {
-            value.clear();
-            return value;
+        updateHistory((history) => {
+            history.clear();
         });
 
         return CommandOutput.empty();
