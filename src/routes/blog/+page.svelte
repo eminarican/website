@@ -9,14 +9,16 @@
 </div>
 
 <script lang="ts">
+    import {onMountEvents, redirectNewSession} from "../../terminal/Util";
     import {goto} from "$app/navigation";
-    import {onMountEvents} from "../../terminal/Util";
 
     import Text from "../../parts/Text.svelte";
 
     onMountEvents([
         {"keydown": onKey}
     ]);
+
+    redirectNewSession("blog");
 
     function onKey(event: KeyboardEvent) {
         if (event.ctrlKey && event.key == "c") goto("/");

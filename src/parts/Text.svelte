@@ -3,7 +3,7 @@
 </p>
 
 <script lang="ts">
-    export let className;
+    export let className = "";
     export let size = "sm";
     export let color = "white";
 </script>

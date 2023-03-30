@@ -3,8 +3,8 @@
 <script lang="ts">
     import "../app.css";
 
-    import {commands, updateHistory} from "../terminal/Store";
-    import {print, onMountHistory} from "../terminal/Util";
+    import {history} from "../terminal/Store";
+    import {print, onMountHistory, executeCommand} from "../terminal/Util";
 
     import CommandOutput from "../cmd/CommandOutput";
     import Terminal from "../parts/Terminal.svelte";
@@ -16,19 +16,9 @@
 
     function command(event: CustomEvent<CommandEvent>) {
         let payload = event.detail;
-        let command = $commands.get(payload.name);
 
-        updateHistory((history) => {
-            history.addRecord(`eminarican@github ~ > ${payload.raw}`);
-            history.addInput(payload.raw);
-
-            if (command == null) {
-                print(history, CommandOutput.error(`unknown command "${payload.name}", use help command`));
-            } else {
-                print(history, command.execute(payload.args));
-            }
-
-            history.resetCursor();
+        executeCommand(payload.name, payload.args, () => {
+            print($history, CommandOutput.error(`unknown command "${payload.name}", use help command`));
         });
     }
 

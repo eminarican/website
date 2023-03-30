@@ -1,11 +1,46 @@
 import {onMount} from "svelte";
-import {updateHistory} from "./Store";
+import {goto} from "$app/navigation";
+import {commands, updateHistory} from "./Store";
 
 import type History from "./History";
 import type CommandOutput from "../cmd/CommandOutput";
 
 export function print(history: History, output: CommandOutput) {
     history.addRecords(output.toArray());
+}
+
+export function redirectNewSession(command: string, args: Array<string> = []) {
+    onMount(() => {
+        updateHistory((history) => {
+            if (history.getRecords().length != 0) return;
+            goto("/").then(() => executeCommand(command, args));
+        });
+    });
+}
+
+export function executeCommand(
+    name: string, args: Array<string> = [],
+    onError: (history: History) => void = (_) => {}
+) {
+    updateHistory((history) => {
+        let raw = `${name} ${args.join(" ")}`;
+
+        history.addInput(raw);
+        history.addRecord(`eminarican@github ~ > ${raw}`);
+
+        commands.subscribe((commands) => {
+            let command = commands.get(name);
+
+            if (command == null) {
+                onError(history);
+                return;
+            }
+
+            print(history, command.execute(args));
+        });
+
+        history.resetCursor();
+    });
 }
 
 export function onMountHistory(callback: (history: History) => void) {
