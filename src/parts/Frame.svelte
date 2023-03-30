@@ -1,4 +1,4 @@
-<div class="{full} absolute flex flex-col p-4" in:fly={{y: -window.innerHeight, duration: 1000, delay: 1000}} out:fly={{y: -window.innerHeight, duration: 1000, delay: 500}}>
+<div class="{full} absolute flex flex-col p-4" in:fly={{y: -window.innerHeight, duration: 1000, delay: 1500}} out:fly={{y: -window.innerHeight, duration: 1000, delay: 1000}}>
     {#if header}
         <div class="flex items-center h-7 px-2 bg-[#363a39] border border-b-0 border-[#7e8181]/75 rounded-t-xl">
             <div class="absolute flex h-3 gap-x-2">
@@ -12,7 +12,7 @@
         </div>
     {/if}
     <div class="{full} bg-black/80 border border-[#7e8181]/75 overflow-hidden {containerStyle()}">
-        <div class="{full} backdrop-blur-lg {containerStyle()}" in:fade={{duration: 1000, delay: 2000}} out:blur={{duration: 500}}>
+        <div class="{full} backdrop-blur-lg {containerStyle()}" in:fade={{duration: 1000, delay: 2500}} out:blur={{duration: 1000}}>
             <slot></slot>
         </div>
     </div>
