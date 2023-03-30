@@ -9,7 +9,7 @@
 </div>
 
 <script lang="ts">
-    import {executeCommand, onMountEvents, onMountNewSession} from "../../terminal/Util";
+    import {executeCommand, onMountEvents, onMountNewSession, printWelcome} from "../../terminal/Util";
     import {goto} from "$app/navigation";
 
     import Text from "../../parts/Text.svelte";
@@ -18,7 +18,8 @@
         {"keydown": onKey}
     ]);
 
-    onMountNewSession((_history) => {
+    onMountNewSession((history) => {
+        printWelcome(history);
         executeCommand("blog");
     });
 

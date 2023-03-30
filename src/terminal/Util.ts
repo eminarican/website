@@ -40,7 +40,6 @@ export function executeCommand(
 export function onMountNewSession(callback: (history: History) => void) {
     onMountHistory((history) => {
         if (history.getRecords().length != 0) return;
-        printWelcome(history);
         callback(history);
     });
 }
