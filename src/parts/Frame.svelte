@@ -1,4 +1,4 @@
-<div class="{full} flex flex-col">
+<div class="{full} absolute flex flex-col p-4" in:fly={{y: -window.innerHeight, duration: 1000, delay: 1000}} out:fly={{y: -window.innerHeight, duration: 1000, delay: 500}}>
     {#if header}
         <div class="flex items-center h-7 px-2 bg-[#363a39] border border-b-0 border-[#7e8181]/75 rounded-t-xl">
             <div class="absolute flex h-3 gap-x-2">
@@ -11,14 +11,16 @@
             </div>
         </div>
     {/if}
-    <div class="{full} bg-black/80 backdrop-blur-lg overflow-hidden {containerStyle()}">
-        <div class="{full} border border-[#7e8181]/75 {containerStyle()}">
+    <div class="{full} bg-black/80 border border-[#7e8181]/75 overflow-hidden {containerStyle()}">
+        <div class="{full} backdrop-blur-lg {containerStyle()}" in:fade={{duration: 1000, delay: 2000}} out:blur={{duration: 500}}>
             <slot></slot>
         </div>
     </div>
 </div>
 
 <script lang="ts">
+    import {blur, fade, fly} from 'svelte/transition';
+
     import Text from "./Text.svelte";
 
     export let header = false;
