@@ -11,7 +11,7 @@
             </div>
         </div>
     {/if}
-    <div class="{full} bg-black/80 backdrop-blur-lg overflow-hidden">
+    <div class="{full} bg-black/80 backdrop-blur-lg overflow-hidden {containerStyle()}">
         <div class="{full} border border-[#7e8181]/75 {containerStyle()}">
             <slot></slot>
         </div>
