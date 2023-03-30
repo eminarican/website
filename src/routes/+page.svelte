@@ -1,8 +1,6 @@
 <Terminal on:command={command}/>
 
 <script lang="ts">
-    import "../app.css";
-
     import {history} from "../terminal/Store";
     import {print, executeCommand} from "../terminal/Util";
 

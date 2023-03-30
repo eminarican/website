@@ -3,6 +3,8 @@
 </div>
 
 <script>
+    import "../app.css";
+
     import {onMountNewSession, printWelcome} from "../terminal/Util";
 
     onMountNewSession((history) => {
