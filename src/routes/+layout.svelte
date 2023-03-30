@@ -1,4 +1,4 @@
-<div class="h-screen w-screen select-none">
+<div class="h-screen w-screen select-none overflow-clip">
     <slot></slot>
 </div>
 

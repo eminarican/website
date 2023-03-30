@@ -1,6 +1,6 @@
 <div class="{full} absolute flex flex-col p-4"
-     out:fly={{y: -window.innerHeight, duration: 1000}}
-     in:fly={{y: -window.innerHeight, duration: 1000, delay: 500}}
+     out:fly={{x: direction() * window.innerWidth, duration: 1000, opacity: 1}}
+     in:fly={{x: direction() * -window.innerWidth, duration: 1000, opacity: 1}}
 >
     {#if header}
         <div class="flex items-center h-7 px-2 bg-[#363a39] border border-b-0 border-[#7e8181]/75 rounded-t-xl">
@@ -14,13 +14,13 @@
             </div>
         </div>
     {/if}
-    <div class="{full} bg-black/80 border border-[#7e8181]/75 backdrop-blur-lg overflow-hidden {containerStyle()}">
+    <div class="{full} bg-black/80 border border-[#7e8181]/75 overflow-hidden {containerStyle()}">
         <slot></slot>
     </div>
 </div>
 
 <script lang="ts">
-    import {fly} from 'svelte/transition';
+    import {fly} from "svelte/transition";
 
     import Text from "./Text.svelte";
 
@@ -32,5 +32,12 @@
             return "border-t-0 rounded-b-xl";
         }
         return "rounded-xl";
+    }
+
+    function direction(): number {
+        if (window.location.pathname != "/") {
+            return -1;
+        }
+        return 1;
     }
 </script>
