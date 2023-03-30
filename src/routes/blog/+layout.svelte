@@ -8,8 +8,8 @@
 </Frame>
 
 <script lang="ts">
-    import {goto} from "$app/navigation";
     import {executeCommand, onMountNewSession, printWelcome} from "../../terminal/Util";
+    import {goto} from "$app/navigation";
 
     import Frame from "../../parts/Frame.svelte";
     import Text from "../../parts/Text.svelte";
