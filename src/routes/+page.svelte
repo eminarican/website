@@ -4,14 +4,14 @@
     import "../app.css";
 
     import {history} from "../terminal/Store";
-    import {print, onMountHistory, executeCommand} from "../terminal/Util";
+    import {print, onMountHistory, executeCommand, printWelcome} from "../terminal/Util";
 
     import CommandOutput from "../cmd/CommandOutput";
     import Terminal from "../parts/Terminal.svelte";
 
     onMountHistory((history) => {
         if (history.getRecords().length != 0) return;
-        print(history, CommandOutput.info("use help command to see available commands"));
+        printWelcome(history);
     });
 
     function command(event: CustomEvent<CommandEvent>) {

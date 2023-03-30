@@ -2,9 +2,9 @@
     <Text size="3xl" color="yellow-300" className="font-bold text-center whitespace-pre-line">
         BLOG IS
         UNDER CONSTRUCTION
-    </Text>
-    <Text size="lg" color="gray-300">
-        press ctrl-c or click exit to escape
+        <Text size="lg" color="gray-300" className="font-bold">
+            press ctrl-c or click exit to escape
+        </Text>
     </Text>
 </div>
 

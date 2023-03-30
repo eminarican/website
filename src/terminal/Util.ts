@@ -1,20 +1,23 @@
 import {onMount} from "svelte";
-import {goto} from "$app/navigation";
 import {commands, updateHistory} from "./Store";
 
 import type History from "./History";
-import type CommandOutput from "../cmd/CommandOutput";
+import CommandOutput from "../cmd/CommandOutput";
+
+export function printWelcome(history: History) {
+    print(history, CommandOutput.info("use help command to see available commands"));
+}
 
 export function print(history: History, output: CommandOutput) {
     history.addRecords(output.toArray());
 }
 
 export function redirectNewSession(command: string, args: Array<string> = []) {
-    onMount(() => {
-        updateHistory((history) => {
-            if (history.getRecords().length != 0) return;
-            goto("/").then(() => executeCommand(command, args));
-        });
+    onMountHistory((history) => {
+        if (history.getRecords().length != 0) return;
+
+        printWelcome(history);
+        executeCommand(command, args);
     });
 }
 
