@@ -1,4 +1,4 @@
-<div class="{full} absolute flex flex-col p-4"
+<div class="h-full w-full absolute flex flex-col p-4"
      out:fly={{x: direction() * window.innerWidth, duration: 1000, opacity: 1}}
      in:fly={{x: -direction() * window.innerWidth, duration: 1000, opacity: 1}}
 >
@@ -14,7 +14,7 @@
             </div>
         </div>
     {/if}
-    <div class="{full} bg-black/80 border border-[#7e8181]/75 overflow-hidden {containerStyle()}">
+    <div class="h-full w-full bg-black/80 border border-[#7e8181]/75 overflow-hidden {containerStyle()}">
         <slot></slot>
     </div>
 </div>
@@ -25,7 +25,6 @@
     import Text from "./Text.svelte";
 
     export let header = false;
-    const full = "h-full w-full";
 
     function containerStyle(): string {
         if (header) {
