@@ -9,7 +9,7 @@
 </div>
 
 <script lang="ts">
-    import {onMountEvents, redirectNewSession} from "../../terminal/Util";
+    import {executeCommand, onMountEvents, onMountNewSession} from "../../terminal/Util";
     import {goto} from "$app/navigation";
 
     import Text from "../../parts/Text.svelte";
@@ -18,7 +18,9 @@
         {"keydown": onKey}
     ]);
 
-    redirectNewSession("blog");
+    onMountNewSession((_history) => {
+        executeCommand("blog");
+    });
 
     function onKey(event: KeyboardEvent) {
         if (event.ctrlKey && event.key == "c") goto("/");

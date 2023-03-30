@@ -12,15 +12,6 @@ export function print(history: History, output: CommandOutput) {
     history.addRecords(output.toArray());
 }
 
-export function redirectNewSession(command: string, args: Array<string> = []) {
-    onMountHistory((history) => {
-        if (history.getRecords().length != 0) return;
-
-        printWelcome(history);
-        executeCommand(command, args);
-    });
-}
-
 export function executeCommand(
     name: string, args: Array<string> = [],
     onError: (history: History) => void = (_) => {}
@@ -43,6 +34,14 @@ export function executeCommand(
         });
 
         history.resetCursor();
+    });
+}
+
+export function onMountNewSession(callback: (history: History) => void) {
+    onMountHistory((history) => {
+        if (history.getRecords().length != 0) return;
+        printWelcome(history);
+        callback(history);
     });
 }
 
