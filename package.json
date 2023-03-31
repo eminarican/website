@@ -21,6 +21,7 @@
     "type": "module",
     "dependencies": {
         "cowsay2": "^2.0.4",
+        "memfs": "^3.4.13",
         "svelte-preprocess": "^5.0.3"
     }
 }

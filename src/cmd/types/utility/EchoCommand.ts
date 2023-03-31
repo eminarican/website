@@ -4,10 +4,10 @@ import Command from "../../Command";
 export default class EchoCommand extends Command {
 
     public constructor() {
-        super("echo", "utility", "echo [text]");
+        super("echo", "utility", "[text]");
     }
 
-    public override execute(args: Array<string>): CommandOutput {
+    public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
         if (args.length == 0) {
             args.push("");
         }

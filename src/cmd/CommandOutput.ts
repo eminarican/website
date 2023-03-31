@@ -1,70 +1,100 @@
 export default class CommandOutput {
 
-    private lines: Array<string> = [];
+    public lines: Array<Line> = [];
 
-    private write(line: string) {
+    private write(line: Line): CommandOutput {
         this.lines.push(line);
+        return this;
     }
 
-    public info(line: string) {
-        this.write(`<div class="whitespace-pre-wrap text-yellow-300">[?] ${line}</div>`);
+    public info(text: string): CommandOutput {
+        return this.write(new Line(OutputType.Info, text));
     }
 
-    public error(line: string) {
-        this.write(`<div class="whitespace-pre-wrap text-red-400">[!] ${line}</div>`);
+    public error(text: string): CommandOutput {
+        return this.write(new Line(OutputType.Error, text));
     }
 
-    public notice(line: string) {
-        this.write(`<div class="whitespace-pre-wrap text-emerald-300">[+] ${line}</div>`);
+    public notice(text: string): CommandOutput {
+        return this.write(new Line(OutputType.Notice, text));
     }
 
-    public infos(lines: Array<string>) {
+    public infos(lines: Array<string>): CommandOutput {
         lines.forEach((line) => this.info(line));
+        return this;
     }
 
-    public errors(lines: Array<string>) {
+    public errors(lines: Array<string>): CommandOutput {
         lines.forEach((line) => this.error(line));
+        return this;
     }
 
-    public notices(lines: Array<string>) {
+    public notices(lines: Array<string>): CommandOutput {
         lines.forEach((line) => this.notice(line));
+        return this;
     }
 
     public toArray(): Array<string> {
-        return this.lines;
+        return this.lines.map((line) => line.toString());
+    }
+
+    public toRawArray(): Array<string> {
+        return this.lines.map((line) => line.data);
     }
 
     public static empty(): CommandOutput {
         return new CommandOutput();
     }
 
-    public static infos(lines: Array<string>): CommandOutput {
-        let output = new CommandOutput();
-        output.infos(lines);
-        return output;
-    }
-
-    public static errors(lines: Array<string>): CommandOutput {
-        let output = new CommandOutput();
-        output.errors(lines);
-        return output;
-    }
-
-    public static notices(lines: Array<string>): CommandOutput {
-        let output = new CommandOutput();
-        output.notices(lines);
-        return output;
-    }
-
     public static info(line: string): CommandOutput {
-        return this.infos([line]);
+        return new CommandOutput().info(line);
     }
 
     public static error(line: string): CommandOutput {
-        return this.errors([line]);
+        return new CommandOutput().error(line);
     }
 
     public static notice(line: string): CommandOutput {
-        return this.notices([line]);
+        return new CommandOutput().notice(line);
+    }
+
+    public static infos(lines: Array<string>): CommandOutput {
+        return new CommandOutput().infos(lines);
+    }
+
+    public static errors(lines: Array<string>): CommandOutput {
+        return new CommandOutput().errors(lines);
+    }
+
+    public static notices(lines: Array<string>): CommandOutput {
+        return new CommandOutput().notices(lines);
+    }
+}
+
+enum OutputType {
+    Info,
+    Error,
+    Notice,
+}
+
+class Line {
+
+    public data: string;
+    public type: OutputType;
+
+    public constructor(type: OutputType, data: string) {
+        this.type = type;
+        this.data = data;
+    }
+
+    public toString() {
+        switch (this.type) {
+            case OutputType.Info:
+                return `<div class="whitespace-pre-wrap text-yellow-300">[?] ${this.data}</div>`;
+            case OutputType.Error:
+                return `<div class="whitespace-pre-wrap text-red-400">[!] ${this.data}</div>`;
+            case OutputType.Notice:
+                return `<div class="whitespace-pre-wrap text-emerald-300">[+] ${this.data}</div>`;
+        }
     }
 }

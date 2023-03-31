@@ -1,5 +1,5 @@
 import {onMount} from "svelte";
-import {commands, updateHistory} from "./Store";
+import {updateHistory} from "./Store";
 
 import type History from "./History";
 import CommandOutput from "../cmd/CommandOutput";
@@ -10,31 +10,6 @@ export function printWelcome(history: History) {
 
 export function print(history: History, output: CommandOutput) {
     history.addRecords(output.toArray());
-}
-
-export function executeCommand(
-    name: string, args: Array<string> = [],
-    onError: (history: History) => void = (_) => {}
-) {
-    updateHistory((history) => {
-        let raw = `${name} ${args.join(" ")}`;
-
-        history.addInput(raw);
-        history.addRecord(`eminarican@github ~ > ${raw}`);
-
-        commands.subscribe((commands) => {
-            let command = commands.get(name);
-
-            if (command == null) {
-                onError(history);
-                return;
-            }
-
-            print(history, command.execute(args));
-        });
-
-        history.resetCursor();
-    });
 }
 
 export function onMountNewSession(callback: (history: History) => void) {

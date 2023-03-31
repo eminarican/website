@@ -6,11 +6,11 @@ export default abstract class Command {
     public group: string;
     public usage: string;
 
-    protected constructor(name: string, group: string, usage: string = name) {
+    protected constructor(name: string, group: string, usage: string = "") {
         this.name = name;
         this.group = group;
         this.usage = usage;
     }
 
-    public abstract execute(args: Array<string>): CommandOutput;
+    public abstract execute(args: Array<string>, flags: Array<string>): CommandOutput;
 }

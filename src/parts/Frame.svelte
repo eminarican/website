@@ -1,6 +1,6 @@
 <div class="h-full w-full absolute flex flex-col p-4"
-     out:fly={{x: direction() * window.innerWidth, duration: 1000, opacity: 1}}
-     in:fly={{x: -direction() * window.innerWidth, duration: 1000, opacity: 1}}
+     out:fly={{x: direction() * window.innerWidth, duration: 1500, opacity: 1}}
+     in:fly={{x: -direction() * window.innerWidth, duration: 1500, opacity: 1}}
 >
     {#if header}
         <div class="flex items-center h-7 px-2 bg-[#363a39] border border-b-0 border-[#7e8181]/75 rounded-t-xl">

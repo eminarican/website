@@ -1,13 +1,13 @@
 import CommandOutput from "../../CommandOutput";
 import Command from "../../Command";
 
-export default class DateCommand extends Command {
+export default class CdCommand extends Command {
 
     public constructor() {
-        super("date", "utility");
+        super("cat", "utility", "[file]");
     }
 
     public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
-        return CommandOutput.notice(new Date().toString());
+        return CommandOutput.empty();
     }
 }

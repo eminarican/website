@@ -7,7 +7,7 @@ export default class AboutCommand extends Command {
         super("about", "main");
     }
 
-    public override execute(args: Array<string>): CommandOutput {
+    public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
         return CommandOutput.infos([
             "hello ^^ i'm emin, a high school student",
             "who has been passionate about programming since 2015",

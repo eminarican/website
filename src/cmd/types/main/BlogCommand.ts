@@ -9,7 +9,7 @@ export default class BlogCommand extends Command {
         super("blog", "main");
     }
 
-    public override execute(args: Array<string>): CommandOutput {
+    public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
         goto("/blog").then();
         return CommandOutput.info("running blog program...");
     }

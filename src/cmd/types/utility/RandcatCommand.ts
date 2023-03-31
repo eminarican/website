@@ -7,7 +7,7 @@ export default class RandcatCommand extends Command {
         super("randcat", "utility");
     }
 
-    public override execute(args: Array<string>): CommandOutput {
+    public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
         return CommandOutput.notices(this.randomCat());
     }
 

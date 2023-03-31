@@ -6,8 +6,8 @@
             </Text>
         {/each}
         <Text className="flex flex-row w-full gap-x-2">
-            <Text>eminarican@github ~ ></Text>
-            <input class="bg-transparent outline-none" bind:this={input}/>
+            <Text className="whitespace-nowrap">eminarican@github ~ ></Text>
+            <input class="w-full bg-transparent outline-none" bind:this={input}/>
         </Text>
     </div>
 </Frame>
@@ -40,7 +40,7 @@
     }
 
     function onEnter(event: KeyboardEvent) {
-        if (event.key != "Enter" || input.value == "") return;
+        if (event.key != "Enter" || input.value.trim() == "") return;
 
         let args = input.value.split(" ");
 

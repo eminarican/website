@@ -1,13 +1,13 @@
 import CommandOutput from "../../CommandOutput";
 import Command from "../../Command";
 
-export default class DateCommand extends Command {
+export default class LsCommand extends Command {
 
     public constructor() {
-        super("date", "utility");
+        super("ls", "utility");
     }
 
     public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
-        return CommandOutput.notice(new Date().toString());
+        return CommandOutput.empty();
     }
 }

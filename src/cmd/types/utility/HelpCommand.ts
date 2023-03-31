@@ -9,7 +9,7 @@ export default class HelpCommand extends Command {
         super("help", "utility");
     }
 
-    public override execute(args: Array<string>): CommandOutput {
+    public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
         let output = new CommandOutput();
 
         this.printGroups([
@@ -29,7 +29,7 @@ export default class HelpCommand extends Command {
         commands.subscribe((commands) => {
             commands.forEach((command) => {
                 if (command.group != group) return;
-                output.notice(`- ${command.usage}`);
+                output.notice(`- ${command.name} ${command.usage}`);
             });
         });
     }

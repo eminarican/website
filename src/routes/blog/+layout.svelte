@@ -8,14 +8,15 @@
 </Frame>
 
 <script lang="ts">
-    import {executeCommand, onMountNewSession, printWelcome} from "../../terminal/Util";
+    import {onMountNewSession, printWelcome} from "../../terminal/Util";
     import {goto} from "$app/navigation";
 
-    import Frame from "../../parts/Frame.svelte";
     import Text from "../../parts/Text.svelte";
+    import Frame from "../../parts/Frame.svelte";
+    import Dispatcher from "../../terminal/Dispatcher";
 
     onMountNewSession((history) => {
         printWelcome(history);
-        executeCommand("blog");
+        Dispatcher.dispatch("blog");
     });
 </script>

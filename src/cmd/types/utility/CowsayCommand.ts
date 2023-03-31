@@ -7,10 +7,10 @@ import {say} from "cowsay2";
 export default class CowsayCommand extends Command {
 
     public constructor() {
-        super("cowsay", "utility", "cowsay [message]");
+        super("cowsay", "utility", "[message]");
     }
 
-    public override execute(args: Array<string>): CommandOutput {
+    public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
         if (args.length == 0) {
             args.push(this.randomFact());
         }
@@ -19,7 +19,7 @@ export default class CowsayCommand extends Command {
     }
 
     private cowsay(message: string): CommandOutput {
-        return CommandOutput.notices(say(message).split("\n"));
+        return CommandOutput.notices(say(message, { nowrap: true }).split("\n"));
     }
 
     private randomFact(): string {
