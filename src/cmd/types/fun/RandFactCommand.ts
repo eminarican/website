@@ -8,11 +8,12 @@ export default class RandFactCommand extends Command {
     }
 
     public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
-        return CommandOutput.notice(this.randomFact());
+        return CommandOutput.notices(this.randomFact().split("\n"));
     }
 
     private randomFact(): string {
-        return facts[Math.round(Math.random() * (facts.length - 1))];
+        let fact = facts[Math.round(Math.random() * (facts.length - 1))];
+        return fact.replace(/(?![^\n]{1,32}$)([^\n]{1,32})\s/g, "$1\n");
     }
 }
 

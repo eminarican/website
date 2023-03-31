@@ -9,6 +9,8 @@ import type CommandMap from "../cmd/CommandMap";
 
 export default class Dispatcher {
 
+    public static FLAG_PIPED = "-piped";
+
     public static dispatch(input: string) {
         let actions = Parser.parse(input);
 
@@ -63,6 +65,8 @@ export default class Dispatcher {
                     switch (actions[i].constructor) {
                         case PipeAction:
                             command.args.push(clearHtml(result.toRawArray().join("\n")));
+                            command.flags.push(this.FLAG_PIPED);
+
                             result = this.executeActionWith(
                                 commands, command
                             );

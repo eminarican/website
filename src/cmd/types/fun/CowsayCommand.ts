@@ -16,10 +16,10 @@ export default class CowsayCommand extends Command {
             args.push("also did you know that you can use me like 'randcat | cowsay | lolcat'?");
         }
 
-        return this.cowsay(args.join(" "));
+        return this.cowsay(args.join(" "), !this.isPiped(flags));
     }
 
-    private cowsay(message: string): CommandOutput {
-        return CommandOutput.notices(say(message).split("\n"));
+    private cowsay(message: string, wrap: boolean): CommandOutput {
+        return CommandOutput.notices(say(message, {nowrap: !wrap}).split("\n"));
     }
 }

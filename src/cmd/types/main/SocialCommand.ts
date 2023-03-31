@@ -21,6 +21,6 @@ export default class SocialCommand extends Command {
     }
 
     private link(name: string, icon: string, href: string): string {
-        return `<i class="${icon}"></i> <a class="underline underline-offset-2" href="${href}" target=_blank>${name}</a>`;
+        return `- <i class="${icon}"></i> <a class="underline underline-offset-2" href="${href}" target=_blank>${name}</a>`;
     }
 }
