@@ -1,5 +1,6 @@
 import CommandOutput from "../../CommandOutput";
 import Command from "../../Command";
+import {wrapText} from "../../../terminal/Util";
 
 export default class RandFactCommand extends Command {
 
@@ -12,8 +13,7 @@ export default class RandFactCommand extends Command {
     }
 
     private randomFact(): string {
-        let fact = facts[Math.round(Math.random() * (facts.length - 1))];
-        return fact.replace(/(?![^\n]{1,32}$)([^\n]{1,32})\s/g, "$1\n");
+        return wrapText(facts[Math.round(Math.random() * (facts.length - 1))], 32);
     }
 }
 

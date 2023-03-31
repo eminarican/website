@@ -4,6 +4,11 @@ import {updateHistory} from "./Store";
 import type History from "./History";
 import CommandOutput from "../cmd/CommandOutput";
 
+export function wrapText(text: string, width: number): string {
+    const regex = new RegExp(`(?![^\\n]{1,${width}}$)([^\\n]{1,${width}})\\s`, 'g');
+    return text.replace(regex, "$1\n");
+}
+
 export function clearHtml(text: string): string {
     return text.replace(/<\S[^>]*>/g, "");
 }
