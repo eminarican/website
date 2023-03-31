@@ -1,5 +1,5 @@
 import {commands, updateHistory} from "./Store";
-import {print} from "./Util";
+import {clearHtml, print} from "./Util";
 
 import Parser from "./parser/Parser";
 import {CommandAction, PipeAction, ThenAction} from "./parser/Action";
@@ -62,7 +62,7 @@ export default class Dispatcher {
 
                     switch (actions[i].constructor) {
                         case PipeAction:
-                            command.args.push(result.toRawArray().join("\n"));
+                            command.args.push(clearHtml(result.toRawArray().join("\n")));
                             result = this.executeActionWith(
                                 commands, command
                             );

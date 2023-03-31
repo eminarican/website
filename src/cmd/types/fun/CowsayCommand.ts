@@ -13,7 +13,7 @@ export default class CowsayCommand extends Command {
     public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
         if (args.length == 0) {
             args.push("please give me something i can say ^.^");
-            args.push("also did you know that you can use me like 'randcat | cowsay'? try it!");
+            args.push("also did you know that you can use me like 'randcat | cowsay | lolcat'?");
         }
 
         return this.cowsay(args.join(" "), args.length != 1);

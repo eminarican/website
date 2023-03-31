@@ -4,6 +4,10 @@ import {updateHistory} from "./Store";
 import type History from "./History";
 import CommandOutput from "../cmd/CommandOutput";
 
+export function clearHtml(text: string): string {
+    return text.replace(/<\S[^>]*>/g, "");
+}
+
 export function printWelcome(history: History) {
     print(history, CommandOutput.info("use help command to see available commands"));
 }
