@@ -2,7 +2,7 @@ import {commands, updateHistory} from "./Store";
 import {print} from "./Util";
 
 import Parser from "./parser/Parser";
-import {CommandAction, PipeAction} from "./parser/Action";
+import {CommandAction, PipeAction, ThenAction} from "./parser/Action";
 
 import CommandOutput from "../cmd/CommandOutput";
 import type CommandMap from "../cmd/CommandMap";
@@ -60,15 +60,19 @@ export default class Dispatcher {
 
                     const command = actions[i + 1] as CommandAction;
 
-                    command.args.push(result.toRawArray().join("\n"));
-
                     switch (actions[i].constructor) {
                         case PipeAction:
-                            console.log(result)
+                            command.args.push(result.toRawArray().join("\n"));
                             result = this.executeActionWith(
                                 commands, command
                             );
-                            console.log(result)
+                            break;
+                        case ThenAction:
+                            print(history, result);
+                            result = this.executeActionWith(
+                                commands, command
+                            );
+                            break;
                     }
                 }
 

@@ -2,7 +2,8 @@ import type Command from "./Command";
 
 import {
     AboutCommand, SocialCommand, InterestsCommand, LanguagesCommand, SourceCommand, BlogCommand,
-    RandcatCommand, CowsayCommand, ClearCommand, EchoCommand, DateCommand, HelpCommand,
+    RandFactCommand, RandcatCommand, CowsayCommand, LolcatCommand,
+    ClearCommand, EchoCommand, DateCommand, HelpCommand,
 } from "./types";
 
 export default class CommandMap {
@@ -18,9 +19,13 @@ export default class CommandMap {
         this.register(new SourceCommand());
         this.register(new BlogCommand());
 
-        // utility commands
+        // fun commands
+        this.register(new RandFactCommand());
         this.register(new RandcatCommand());
         this.register(new CowsayCommand());
+        this.register(new LolcatCommand());
+
+        // utility commands
         this.register(new ClearCommand());
         this.register(new EchoCommand());
         this.register(new DateCommand());

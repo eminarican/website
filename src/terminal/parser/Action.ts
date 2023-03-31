@@ -2,6 +2,8 @@ export interface Action {}
 
 export class PipeAction implements Action {}
 
+export class ThenAction implements Action {}
+
 export class CommandAction implements Action {
 
     public name: string;

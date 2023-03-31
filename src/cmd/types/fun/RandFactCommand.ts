@@ -1,25 +1,14 @@
 import CommandOutput from "../../CommandOutput";
 import Command from "../../Command";
 
-// @ts-ignore
-import {say} from "cowsay2";
-
-export default class CowsayCommand extends Command {
+export default class RandFactCommand extends Command {
 
     public constructor() {
-        super("cowsay", "utility", "[message]");
+        super("randfact", "fun");
     }
 
     public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
-        if (args.length == 0) {
-            args.push(this.randomFact());
-        }
-
-        return this.cowsay(args.join(" "));
-    }
-
-    private cowsay(message: string): CommandOutput {
-        return CommandOutput.notices(say(message, { nowrap: true }).split("\n"));
+        return CommandOutput.notice(this.randomFact());
     }
 
     private randomFact(): string {

@@ -1,7 +1,7 @@
 import {Token, TokenType} from "./Token";
 
 import type {Action} from "./Action";
-import {CommandAction, PipeAction} from "./Action";
+import {CommandAction, PipeAction, ThenAction} from "./Action";
 
 export default class Parser {
 
@@ -10,6 +10,8 @@ export default class Parser {
             switch (parameter) {
                 case "|":
                     return new Token(TokenType.Pipe, parameter);
+                case "&&":
+                    return new Token(TokenType.Then, parameter);
             }
 
             if (parameter.startsWith("-")) {
@@ -46,6 +48,9 @@ export default class Parser {
             switch (token.type) {
                 case TokenType.Pipe:
                     actions.push(new PipeAction());
+                    break;
+                case TokenType.Then:
+                    actions.push(new ThenAction());
             }
         });
 

@@ -13,7 +13,7 @@ export default class HelpCommand extends Command {
         let output = new CommandOutput();
 
         this.printGroups([
-            "main", "utility"
+            "main", "fun", "utility"
         ], output);
 
         return output;

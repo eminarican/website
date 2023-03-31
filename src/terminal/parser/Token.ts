@@ -2,6 +2,7 @@ export enum TokenType {
     Arg,
     Flag,
     Pipe,
+    Then,
 }
 
 export class Token {

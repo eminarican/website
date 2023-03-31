@@ -6,9 +6,13 @@ export {default as LanguagesCommand} from "./main/LanguagesCommand";
 export {default as SourceCommand} from "./main/SourceCommand";
 export {default as BlogCommand} from "./main/BlogCommand";
 
+// fun commands
+export {default as RandFactCommand} from "./fun/RandFactCommand";
+export {default as RandcatCommand} from "./fun/RandcatCommand";
+export {default as CowsayCommand} from "./fun/CowsayCommand";
+export {default as LolcatCommand} from "./fun/LolcatCommand";
+
 // utility commands
-export {default as RandcatCommand} from "./utility/RandcatCommand";
-export {default as CowsayCommand} from "./utility/CowsayCommand";
 export {default as ClearCommand} from "./utility/ClearCommand";
 export {default as EchoCommand} from "./utility/EchoCommand";
 export {default as DateCommand} from "./utility/DateCommand";
