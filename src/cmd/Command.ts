@@ -14,8 +14,4 @@ export default abstract class Command {
     }
 
     public abstract execute(args: Array<string>, flags: Array<string>): CommandOutput;
-
-    protected isPiped(flags: Array<string>): boolean {
-        return flags.includes(Dispatcher.FLAG_PIPED);
-    }
 }
