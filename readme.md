@@ -1,6 +1,6 @@
 <p align="center"><img src=".github/assets/logo.png" width="200px" alt="logo"/></p>
 <h1 align="center">Website</h1>
-<p align="center"><strong>my personal portfolio website</strong></p>
+<p align="center"><strong>my personal terminal themed portfolio website</strong></p>
 
 <p align="center">
   <a href="https://opensource.org/licenses/gpl-3.0.html">
