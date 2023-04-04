@@ -9,8 +9,8 @@ export function wrapText(text: string, width: number): string {
     return text.replace(regex, "$1\n");
 }
 
-export function clearHtml(text: string): string {
-    return text.replace(/<\S[^>]*>/g, "");
+export function clearText(text: string): string {
+    return text.replace(/<\S[^>]*>/g, "").replace(/\[(\!|\?|\+)]\s?/g, "");
 }
 
 export function printWelcome(history: History) {

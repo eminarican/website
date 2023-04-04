@@ -16,7 +16,7 @@ export default class CowsayCommand extends Command {
             args.push("also did you know that you can use me like 'randcat | cowsay | lolcat'?");
         }
 
-        return this.cowsay(args.join(" "), !this.isPiped(flags));
+        return this.cowsay(args.join(" "), this.isPiped(flags));
     }
 
     private cowsay(message: string, wrap: boolean): CommandOutput {
