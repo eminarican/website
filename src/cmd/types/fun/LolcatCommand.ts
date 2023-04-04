@@ -7,7 +7,7 @@ export default class LolcatCommand extends Command {
         super("lolcat", "fun", "[text]");
     }
 
-    public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
+    public override execute(args: Array<string>, flags: Array<string>, piped: boolean): CommandOutput {
         if (args.length == 0) {
             return CommandOutput.empty();
         }

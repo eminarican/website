@@ -7,7 +7,7 @@ export default class EchoCommand extends Command {
         super("echo", "utility", "[text]");
     }
 
-    public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
+    public override execute(args: Array<string>, flags: Array<string>, piped: boolean): CommandOutput {
         if (args.length == 0) {
             args.push("");
         }

@@ -21,11 +21,12 @@ macro_rules! console_log {
 pub fn eval_bash(input: &str, callback: &js_sys::Function) -> JsValue {
     let result = {
         let callback = callback.clone();
-        eval(input, move |name, args| {
-            callback.call2(
+        eval(input, move |name, args, piped| {
+            callback.call3(
                 &JsValue::null(),
                 &JsValue::from_str(&name),
-                &JsValue::from_serde(&args).unwrap()
+                &JsValue::from_serde(&args).unwrap(),
+                &JsValue::from_bool(piped),
             ).unwrap().clone().into_serde().unwrap()
         }).expect("couldn't parse input")
     };

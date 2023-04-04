@@ -10,7 +10,7 @@ export default class PwdCommand extends Command {
         super("pwd", "utility");
     }
 
-    public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
+    public override execute(args: Array<string>, flags: Array<string>, piped: boolean): CommandOutput {
         history.subscribe((history) => {
             directory.subscribe((directory) => {
                 print(history, CommandOutput.info(`/${directory.join("/")}`));

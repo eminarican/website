@@ -7,7 +7,7 @@ export default class InterestsCommand extends Command {
         super("interests", "main");
     }
 
-    public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
+    public override execute(args: Array<string>, flags: Array<string>, piped: boolean): CommandOutput {
         let output = new CommandOutput();
 
         output.info("my main interests are:");

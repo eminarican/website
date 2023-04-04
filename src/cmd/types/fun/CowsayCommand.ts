@@ -10,13 +10,13 @@ export default class CowsayCommand extends Command {
         super("cowsay", "fun", "[message]");
     }
 
-    public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
+    public override execute(args: Array<string>, flags: Array<string>, piped: boolean): CommandOutput {
         if (args.length == 0) {
             args.push("please give me something i can say ^.^");
             args.push("also did you know that you can use me like 'randcat | cowsay | lolcat'?");
         }
 
-        return this.cowsay(args.join(" "), true); // todo
+        return this.cowsay(args.join(" "), !piped);
     }
 
     private cowsay(message: string, wrap: boolean): CommandOutput {

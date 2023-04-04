@@ -7,7 +7,7 @@ export default class CdCommand extends Command {
         super("cat", "utility", "[file]");
     }
 
-    public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
+    public override execute(args: Array<string>, flags: Array<string>, piped: boolean): CommandOutput {
         return CommandOutput.empty();
     }
 }

@@ -8,7 +8,7 @@ export default class RandFactCommand extends Command {
         super("randfact", "fun");
     }
 
-    public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
+    public override execute(args: Array<string>, flags: Array<string>, piped: boolean): CommandOutput {
         return CommandOutput.notices(this.randomFact().split("\n"));
     }
 

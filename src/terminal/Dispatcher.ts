@@ -17,11 +17,11 @@ export default class Dispatcher {
             history.addInput(input);
             history.resetCursor();
 
-            let result = eval_bash(input, (name: string, args: Array<string>) => {
+            let result = eval_bash(input, (name: string, args: Array<string>, piped: boolean) => {
                 let result = this.executeWith(commands, name, args.map((arg, index) => {
                     const res = clearText(arg);
                     return res + (res !== arg && index < args.length - 1 ? "\n" : "");
-                }), [])?.toArray();
+                }), [], piped)?.toArray();
 
                 return result ?? CommandOutput.error(`unknown command "${name}, use help command"`).toArray();
             });
@@ -31,12 +31,12 @@ export default class Dispatcher {
     }
 
     public static execute(
-        name: string, args: Array<string>, flags: Array<string>,
+        name: string, args: Array<string>, flags: Array<string>, piped: boolean,
         onError: () => void = () => {}
     ) {
         this.updateHistoryCommands((history, commands) => {
             let output = this.executeWith(
-                commands, name, args, flags
+                commands, name, args, flags, piped
             );
             if (output != null) {
                 history.addRecords(output.toArray());
@@ -47,12 +47,12 @@ export default class Dispatcher {
     }
 
     private static executeWith(
-        commands: CommandMap, name: string, args: Array<string>, flags: Array<string>
+        commands: CommandMap, name: string, args: Array<string>, flags: Array<string>, piped: boolean
     ): CommandOutput | null {
         let command = commands.get(name);
         if (command == null) return null;
 
-        return command.execute(args, flags);
+        return command.execute(args, flags, piped);
     }
 
     private static updateHistoryCommands(callback: (history: History, commands: CommandMap) => void) {

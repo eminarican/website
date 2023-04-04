@@ -7,7 +7,7 @@ export default class LsCommand extends Command {
         super("ls", "utility");
     }
 
-    public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
+    public override execute(args: Array<string>, flags: Array<string>, piped: boolean): CommandOutput {
         return CommandOutput.empty();
     }
 }

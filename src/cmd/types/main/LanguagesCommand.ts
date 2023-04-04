@@ -7,7 +7,7 @@ export default class LanguagesCommand extends Command {
         super("languages", "main");
     }
 
-    public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
+    public override execute(args: Array<string>, flags: Array<string>, piped: boolean): CommandOutput {
         let output = new CommandOutput();
 
         output.info("languages that i use more frequently:");

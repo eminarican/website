@@ -1,5 +1,4 @@
 import type CommandOutput from "./CommandOutput";
-import Dispatcher from "../terminal/Dispatcher";
 
 export default abstract class Command {
 
@@ -13,5 +12,5 @@ export default abstract class Command {
         this.usage = usage;
     }
 
-    public abstract execute(args: Array<string>, flags: Array<string>): CommandOutput;
+    public abstract execute(args: Array<string>, flags: Array<string>, piped: boolean): CommandOutput;
 }

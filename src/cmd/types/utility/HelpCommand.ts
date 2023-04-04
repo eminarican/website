@@ -9,7 +9,7 @@ export default class HelpCommand extends Command {
         super("help", "utility");
     }
 
-    public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
+    public override execute(args: Array<string>, flags: Array<string>, piped: boolean): CommandOutput {
         let output = new CommandOutput();
 
         this.printGroups([

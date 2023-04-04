@@ -9,7 +9,7 @@ export default class ClearCommand extends Command {
         super("clear", "utility");
     }
 
-    public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
+    public override execute(args: Array<string>, flags: Array<string>, piped: boolean): CommandOutput {
         updateHistory((history) => {
             history.clear();
         });

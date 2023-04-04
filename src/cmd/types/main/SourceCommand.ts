@@ -7,7 +7,7 @@ export default class SourceCommand extends Command {
         super("source", "main");
     }
 
-    public override execute(args: Array<string>, flags: Array<string>): CommandOutput {
+    public override execute(args: Array<string>, flags: Array<string>, piped: boolean): CommandOutput {
         window.open("https://github.com/eminarican/website", "_blank");
         return CommandOutput.info("redirecting to github page");
     }
