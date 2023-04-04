@@ -12,6 +12,6 @@ export default class EchoCommand extends Command {
             args.push("");
         }
 
-        return CommandOutput.notices(args);
+        return CommandOutput.notices(args.join(" ").split("\n"));
     }
 }
