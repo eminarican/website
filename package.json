@@ -5,7 +5,7 @@
     "scripts": {
         "rsw": "rsw",
         "dev": "concurrently \"rsw watch\" \"vite\"",
-        "build": "rsw build && tsc && vite build",
+        "build": "./build.sh && rsw build && tsc && vite build",
         "preview": "vite preview",
         "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
         "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
