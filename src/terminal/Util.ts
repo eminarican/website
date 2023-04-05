@@ -1,3 +1,4 @@
+import init from "wasm";
 import {onMount} from "svelte";
 import {updateHistory} from "./Store";
 
@@ -21,9 +22,13 @@ export function print(history: History, output: CommandOutput) {
     history.addRecords(output.toArray());
 }
 
-export function onMountNewSession(callback: (history: History) => void) {
-    onMountHistory((history) => {
+export function onMountNewSession(callback: (history: History) => void = () => {}) {
+    onMountHistory(async (history) => {
         if (history.getRecords().length != 0) return;
+
+        printWelcome(history);
+        await init();
+
         callback(history);
     });
 }

@@ -8,15 +8,14 @@
 </Frame>
 
 <script lang="ts">
-    import {onMountNewSession, printWelcome} from "../../terminal/Util";
+    import {onMountNewSession} from "../../terminal/Util";
     import {goto} from "$app/navigation";
 
     import Text from "../../parts/Text.svelte";
     import Frame from "../../parts/Frame.svelte";
     import Dispatcher from "../../terminal/Dispatcher";
 
-    onMountNewSession((history) => {
-        printWelcome(history);
-        Dispatcher.dispatch("blog");
+    onMountNewSession(async (_history) => {
+        await Dispatcher.dispatch("blog");
     });
 </script>

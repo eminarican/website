@@ -5,9 +5,7 @@
 <script>
     import "../app.css";
 
-    import {onMountNewSession, printWelcome} from "../terminal/Util";
+    import {onMountNewSession} from "../terminal/Util";
 
-    onMountNewSession((history) => {
-        printWelcome(history);
-    });
+    onMountNewSession(); // needed for initialization
 </script>

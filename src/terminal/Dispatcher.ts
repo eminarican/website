@@ -4,14 +4,12 @@ import type History from "./History";
 import type CommandMap from "../cmd/CommandMap";
 import CommandOutput from "../cmd/CommandOutput";
 
-import init, {eval_bash} from "wasm";
+import {eval_bash} from "wasm";
 import {clearText} from "./Util";
 
 export default class Dispatcher {
 
-    public static async dispatch(input: string) {
-        await init();
-
+    public static dispatch(input: string) {
         this.updateHistoryCommands((history, commands) => {
             history.addRecord(`eminarican@github ~ > ${input}`);
             history.addInput(input);
